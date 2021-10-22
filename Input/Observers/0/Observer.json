@@ -1,0 +1,110 @@
+{
+	"observing" : 
+	[
+		{
+			"id" : "1",
+			"type" : "NaiveObserver",
+			"dynamic_model" : 
+			[
+				{
+					"id" : "1",
+					"name" : "Unicycle1",
+					"state_variables" : ["x", "y", "theta", "v"],
+					"dynamics" : "TestKinematics",
+					"control_variables" : ["a", "omega"],
+					"world_conversion_function" : "TestKinematicsToWorld",
+					"state_estimation_function" : "TestKinematicsToState",
+					"parameters" : ["length", "desiredV"]
+				},
+				{ 
+					"id" : "0",
+					"name" : "Unicycle1",
+					"state_variables" : ["x", "y", "theta", "v"],
+					"dynamics" : "TestKinematics",
+					"control_variables" : ["a", "omega"],
+					"world_conversion_function" : "TestKinematicsToWorld",
+					"state_estimation_function" : "TestKinematicsToState",
+					"parameters" : ["length", "desiredV"]
+				},
+				{
+					"id" : "__default__",
+					"name" : "Unicycle1",
+					"state_variables" : ["x", "y", "theta", "v"],
+					"dynamics" : "TestKinematics",
+					"control_variables" : ["a", "omega"],
+					"world_conversion_function" : "TestKinematicsToWorld",
+					"state_estimation_function" : "TestKinematicsToState",
+					"parameters" : ["length", "desiredV"]
+				}
+			],
+				
+			"control_model" :
+			[
+				{
+					"id" : "1",
+					"name" : "SimpleEuropean",
+					"maneuvers" : ["FAST", "SLOW", "LEFT", "RIGHT"],
+					"controller" : "AccOmegaControl",
+					"control_variables" : ["a", "omega"],
+					"automaton" : "TestAutomaton"
+				},
+				{
+					"id" : "0",
+					"name" : "Simplistic",
+					"maneuvers" : ["FAST"],
+					"controller" : "StraightLineControl",
+					"control_variables" : ["a", "omega"]
+				},
+				{
+					"id" : "__default__",
+					"name" : "Simplistic",
+					"maneuvers" : ["FAST"],
+					"controller" : "StraightLineControl",
+					"control_variables" : ["a", "omega"]
+				}
+			],
+			
+			"external_sensors" : ["VisionSensor"],
+			"internal_sensors" : ["SelfSensor"],
+			"simulation_steps" : 21,
+			"prediction_time_span" : 1,
+			
+			"hidden_range" : 
+			{
+				"x" : [0, 2],
+				"y" : [0, 4],
+				"theta" : [-0.7, 0.7],
+				"v" : [0, 20]
+			},
+			
+			"hidden_resolution" :
+			{
+				"x" : 1,
+				"y" : 2,
+				"theta" : 1,
+				"v" : 5
+			},
+			
+			"hidden_parameters" : 
+			{
+				"length" : 4.47,
+				"desiredV" : 20
+			},
+			
+			"tolerances" : 
+			{
+				"xb" : 0.1,
+				"xf" : 0.1,
+				"yb" : 0.1,
+				"yf" : 0.1,
+				"v" : 1,
+				"length" : 0.1,
+				"desiredV" : 0.1
+			}
+		}
+	],
+	
+	"world_agent_features" : ["xb", "xf", "yb", "yf", "v", "length", "desiredV"], 
+	"world_environment_features" : ["lanes", "lane_width"],
+	"output_dir" : "/home/Output/Observers/0/"
+}
