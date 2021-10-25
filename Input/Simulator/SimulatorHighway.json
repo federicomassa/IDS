@@ -1,7 +1,7 @@
 {
-	"agents" : 
-		[
-			{"id" : "0",
+	"agents" : [
+		{
+			"id" : "0",
 			"init_states" :
 			{
 				"x" : 0,
@@ -10,8 +10,8 @@
 				"v" : 20
 			},
 			
-			"dynamic_model" : "Unicycle1",
-			"control_model" : "SimpleEuropean",
+			"dynamic_model" : "Unicycle",
+			"control_model" : "LeftHandDrivingRules",
 			"init_maneuver" : "FAST",
 			"sensors" : ["VisionSensor", "SelfSensor"],
 			"communication" : "ON",
@@ -19,20 +19,19 @@
 			"length" : "4.47",
 			"desiredV" : "20",
 			"parameters" : ["length", "desiredV"]
-			},
-			
-			{"id" : "1",
-			
-			"init_states" :
-			{
+		},
+		
+		{
+			"id" : "1",
+			"init_states" :	{
 				"x" : 6,
 				"y" : 1.5,
 				"theta" : 0,
 				"v" : 20
 			},
-			
-			"dynamic_model" : "Unicycle1",
-			"control_model" : "SimpleEuropean",
+		
+			"dynamic_model" : "Unicycle",
+			"control_model" : "LeftHandDrivingRules",
 			"sensors" : ["VisionSensor", "SelfSensor"],
 			"init_maneuver" : "FAST",
 			"communication" : "ON",
@@ -40,8 +39,8 @@
 			"length" : "4.47",
 			"desiredV" : "20",
 			"parameters" : ["length", "desiredV"]
-			}		
-		],
+		}		
+	],
 		
 	"simulation_time_span" : 3,
 	"simulation_time_step" : 0.011,
@@ -60,8 +59,7 @@
 	"world_agent_features" : ["xb", "xf", "yb", "yf", "v", "length", "desiredV"], 
 	"world_environment_features" : ["lanes", "lane_width"],
 	
-	"sensors" : 
-	[
+	"sensors" : [
 		{
 		"name" : "VisionSensor", 
 		"type" : "external"
@@ -73,10 +71,9 @@
 		}
 	],
 	
-	"dynamic_models" :
-	[
+	"dynamic_models" :	[
 		{ 	
-			"name" : "Unicycle1",
+			"name" : "Unicycle",
 			"state_variables" : ["x", "y", "theta", "v"],
 			"dynamics" : "TestKinematics",
 			"control_variables" : ["a", "omega"],
@@ -85,10 +82,9 @@
 		}
 	],
 	
-	"control_models" :
-	[
+	"control_models" : [
 		{
-			"name" : "SimpleEuropean",
+			"name" : "LeftHandDrivingRules",
 			"maneuvers" : ["FAST", "SLOW", "LEFT", "RIGHT"],
 			"controller" : "AccOmegaControl",
 			"control_variables" : ["a", "omega"],
